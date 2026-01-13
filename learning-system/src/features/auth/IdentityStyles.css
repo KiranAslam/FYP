@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+.login-bg {
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #00f2ff;
+}
+
+
+
+/* Purana .input-container code hata kar ye likhen */
+.input-container {
+    border: 2px solid #ff6600; /* Outer Orange Border */
+    padding: 3px; /* Space for double line effect */
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+    background-color: transparent;
+}
+
+.inner-border {
+    border: 1px solid #00f2ff; /* Inner Cyan Line */
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.cyber-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00f2ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- Success Message (Niche wala text) ki Styling --- */
+.message.success {
+    margin-top: 0; /* Margin-top ki bajaye center alignment behtar hai */
+    padding: 15px 30px;
+    font-size: 1.5rem; /* Text ko thora bara kiya taake center mein prominent lage */
+    letter-spacing: 3px;
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1); 
+    border-left: 4px solid #00ff88;   
+    border-right: 4px solid #00ff88;
+    text-shadow: 0 0 15px #00ff88; /* Glow ko thora barhaya gaya */
+    animation: glowPulse 2s infinite; 
+    text-align: center;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; text-shadow: 0 0 15px #00ff88; }
+    100% { opacity: 0.7; }
+}

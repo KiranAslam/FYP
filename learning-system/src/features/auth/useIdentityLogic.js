@@ -9,9 +9,10 @@ export const useIdentityLogic = (correctId, correctPass) => {
     const handleSubmit = () => {
         if (step === 'ID') {
             if (inputValue.trim().toUpperCase() === correctId.toUpperCase()) {
-                setStep('PASS'); 
+                setStep('PASS');
                 setInputValue('');
-                setMessage(''); 
+                setMessage('');
+                setStatus('');
             } else {
                 setMessage("INCORRECT IDENTITY. ACCESS DENIED.");
                 setStatus('error');
@@ -19,9 +20,11 @@ export const useIdentityLogic = (correctId, correctPass) => {
             }
         } else if (step === 'PASS') {
             if (inputValue === correctPass) {
-                setStep('GRANTED'); 
-                setMessage("IDENTITY CONFIRMED. ACCESS GRANTED.");
-                setStatus('success');
+               
+                setStep('SCANNING'); 
+                setInputValue('');
+                setMessage('SCANNING FOR BIOMETRIC DATA...'); 
+                setStatus('info'); 
             } else {
                 setMessage("INCORRECT PASSWORD. ACCESS DENIED.");
                 setStatus('error');
@@ -29,6 +32,12 @@ export const useIdentityLogic = (correctId, correctPass) => {
             }
         }
     };
+// exact logic will be inserted here
+    const completeScan = () => {
+        setMessage("BIOMETRIC SCAN COMPLETE. ACCESS GRANTED.");
+        setStatus('success');
+        setStep('GRANTED');
+    };
 
-    return { inputValue, setInputValue, message, status, step, handleSubmit };
+    return { inputValue, setInputValue, message, status, step, handleSubmit, completeScan };
 };

@@ -5,7 +5,6 @@ export const useIdentityLogic = (correctId, correctPass) => {
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState(''); 
     const [step, setStep] = useState('ID'); 
-
     const handleSubmit = () => {
         if (step === 'ID') {
             if (inputValue.trim().toUpperCase() === correctId.toUpperCase()) {
@@ -19,8 +18,7 @@ export const useIdentityLogic = (correctId, correctPass) => {
                 setInputValue('');
             }
         } else if (step === 'PASS') {
-            if (inputValue === correctPass) {
-               
+            if (inputValue === correctPass) {   
                 setStep('SCANNING'); 
                 setInputValue('');
                 setMessage('SCANNING FOR BIOMETRIC DATA...'); 
@@ -34,10 +32,9 @@ export const useIdentityLogic = (correctId, correctPass) => {
     };
 // exact logic will be inserted here
     const completeScan = () => {
-        setMessage("BIOMETRIC SCAN COMPLETE. ACCESS GRANTED.");
+        setMessage("ACCESS GRANTED.");
         setStatus('success');
         setStep('GRANTED');
     };
-
     return { inputValue, setInputValue, message, status, step, handleSubmit, completeScan };
 };

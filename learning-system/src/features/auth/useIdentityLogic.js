@@ -5,6 +5,30 @@ export const useIdentityLogic = (correctId, correctPass) => {
     const [message, setMessage] = useState('');
     const [status, setStatus] = useState(''); 
     const [step, setStep] = useState('ID'); 
+    // --- FACE RECOGNITION LOGIC ---
+    const verifyFace = async (imageSrc) => {
+        try {
+            const response = await fetch('http://localhost:5000/verify-face', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageSrc })
+            });
+
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                completeScan(); 
+            } else {
+                setMessage("FACE NOT RECOGNIZED. TRY AGAIN.");
+                setStatus('error');
+            }
+        } catch (error) {
+            setMessage("BACKEND CONNECTION ERROR.");
+            setStatus('error');
+            console.error(error);
+        }
+    };
+
     const handleSubmit = () => {
         if (step === 'ID') {
             if (inputValue.trim().toUpperCase() === correctId.toUpperCase()) {
@@ -30,11 +54,15 @@ export const useIdentityLogic = (correctId, correctPass) => {
             }
         }
     };
-// exact logic will be inserted here
+
     const completeScan = () => {
         setMessage("ACCESS GRANTED.");
         setStatus('success');
         setStep('GRANTED');
     };
-    return { inputValue, setInputValue, message, status, step, handleSubmit, completeScan };
+
+    return { 
+        inputValue, setInputValue, message, status, 
+        step, handleSubmit, completeScan, verifyFace 
+    };
 };

@@ -14,7 +14,6 @@ const IdentityScreen = () => {
             return () => clearTimeout(timer);
         }
     }, [step, completeScan]);
-
     return (
         <div className="login-bg">
             {step !== 'GRANTED' && step !== 'SCANNING' && (

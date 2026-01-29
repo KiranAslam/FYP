@@ -58,58 +58,95 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 40px;
     animation: fadeIn 0.8s ease-out;
 }
-
-.scanner-circle {
+.scanner-square {
     position: relative;
-    width: 240px;
-    height: 240px;
-    border: 1px solid rgba(0, 242, 255, 0.2);
-    border-radius: 50%;
+    width: 350px; 
+    height: 350px;
+    background: rgba(0, 242, 255, 0.02);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, rgba(0, 242, 255, 0.05) 0%, transparent 70%);
     overflow: hidden;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    box-shadow: inset 0 0 30px rgba(0, 242, 255, 0.1);
+}
+.webcam-capture {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    opacity: 0.8; 
+    z-index: 1;
+    filter: brightness(1.1) contrast(1.2); 
 }
 
-.scanner-ring {
+.scan-corners {
     position: absolute;
-    width: 95%;
-    height: 95%;
-    border: 2px dashed rgba(0, 242, 255, 0.4);
-    border-radius: 50%;
-    animation: rotate 10s linear infinite;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
 }
+
+.scan-corners::before, .scan-corners::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #00f2ff;
+}
+.scan-corners::before {
+    top: 0; left: 0;
+    border-right: none; border-bottom: none;
+}
+.scan-corners::after {
+    top: 0; right: 0;
+    border-left: none; border-bottom: none;
+}
+.scanner-square::before, .scanner-square::after {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #00f2ff;
+    z-index: 10;
+}
+
+.scanner-square::before {
+    bottom: 0; left: 0;
+    border-right: none; border-top: none;
+}
+
+.scanner-square::after {
+    bottom: 0; right: 0;
+    border-left: none; border-top: none;
+}
+.scanner-line {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #00f2ff, transparent);
+    box-shadow: 0 0 20px #00f2ff;
+    animation: scanMove 3s ease-in-out infinite;
+    z-index: 5;
+}
+
 .scanner-grid {
     position: absolute;
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
-    background-size: 20px 20px;
-}
-.scanner-line {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: #00f2ff;
-    box-shadow: 0 0 15px #00f2ff;
-    animation: scanMove 4s ease-in-out infinite;
+        linear-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
     z-index: 2;
 }
-.scan-text {
-    position: relative;
-    font-size: 0.9rem;
-    color: #00f2ff;
-    letter-spacing: 2px;
-    text-shadow: 0 0 8px #00f2ff;
-    z-index: 3;
-    font-weight: bold;
-}
+
 .data-readout {
     margin-top: 20px;
     display: flex;
@@ -119,22 +156,7 @@
     font-family: 'Courier New', Courier, monospace;
     opacity: 0.8;
 }
-.progress-bar-container {
-    width: 280px;
-    height: 6px;
-    background: rgba(255, 102, 0, 0.1);
-    border: 1px solid rgba(255, 102, 0, 0.3);
-    margin-top: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-}
 
-.progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, #ff6600, #00f2ff);
-    box-shadow: 0 0 10px #00f2ff;
-    animation: fillProgress 15s linear forwards;
-}
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }

@@ -6,9 +6,7 @@ import './IdentityStyles.css';
 const IdentityScreen = () => {
     const { inputValue, setInputValue, message, status, step, handleSubmit, verifyFace } = 
           useIdentityLogic("Kiran", "1234");
-
     const webcamRef = useRef(null);
-
     useEffect(() => {
         let interval;
         if (step === 'SCANNING') {
@@ -23,7 +21,6 @@ const IdentityScreen = () => {
         }
         return () => clearInterval(interval);
     }, [step, verifyFace]);
-
     return (
         <div className="login-bg">
             {step !== 'GRANTED' && step !== 'SCANNING' && (
@@ -63,7 +60,6 @@ const IdentityScreen = () => {
                         />
                         <div className="scanner-grid"></div>
                         <div className="scanner-line"></div>
-                        
                         <div className="scan-corners">
                             <div className="corner top-left"></div>
                             <div className="corner top-right"></div>

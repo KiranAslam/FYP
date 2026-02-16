@@ -10,7 +10,7 @@ CORS(app)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 recognizer = cv2.face.LBPHFaceRecognizer_create(1, 8, 8, 8)
 base_dir = os.path.dirname(os.path.abspath(__file__))
-trainer_path = os.path.join(base_dir, 'model', 'trainer.yml')
+trainer_path = os.path.join(base_dir, 'model', '../trainer.yml')
 if os.path.exists(trainer_path):
     recognizer.read(trainer_path)
 @app.route('/verify-face', methods=['POST'])
